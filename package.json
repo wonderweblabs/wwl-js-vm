@@ -1,0 +1,60 @@
+{
+  "name": "wwl-js-vm",
+  "version": "0.1.0",
+  "description": "",
+  "private": true,
+  "main": "lib/index.coffee",
+  "author": {
+    "name": "wonderweblabs",
+    "email": "email@wonderweblabs.com",
+    "url": "https://www.wonderweblabs.com"
+  },
+  "scripts": {
+    "build": "./node_modules/browserify/bin/cmd.js --require coffee-script/register --extension='.coffee' -g coffeeify --outfile='./build/index.js' ./build/index.coffee",
+    "test": "./node_modules/karma/bin/karma start karma.conf.js"
+  },
+  "license": "MIT",
+  "files": [
+    "lib",
+    "vendor",
+    "LICENSE",
+    "package.json",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wonderweblabs/wwl-js-vm.git"
+  },
+  "dependencies": {
+    "ampersand-view": "^9.0.2",
+    "q": ">=2.0.3",
+    "underscore": "^1.8.3",
+    "wwl-js-app-context": "wonderweblabs/wwl-js-app-context#0.1.1"
+  },
+  "devDependencies": {
+    "browserify": "^13.0.0",
+    "browserify-incremental": "^3.0.1",
+    "browserify-istanbul": "^1.0.0",
+    "chai": "^3.5.0",
+    "coffee-script": "^1.10.0",
+    "coffeeify": "^2.0.1",
+    "domready": "^1.0.8",
+    "istanbul": "^0.4.2",
+    "jsdom": "^8.1.0",
+    "karma": "^0.13.22",
+    "karma-browserify": "^5.0.2",
+    "karma-chrome-launcher": "^0.2.2",
+    "karma-coffee-preprocessor": "^0.3.0",
+    "karma-coverage": "^0.5.5",
+    "karma-mocha": "^0.2.2",
+    "karma-phantomjs-launcher": "^1.0.0",
+    "karma-sinon-chai": "^1.2.0",
+    "lolex": "^1.4.0",
+    "mocha": "^2.4.5",
+    "mocha-jsdom": "^1.1.0",
+    "phantomjs-prebuilt": "^2.1.5",
+    "sinon": "^1.17.3",
+    "sinon-chai": "^2.8.0",
+    "watchify": "^3.7.0"
+  }
+}

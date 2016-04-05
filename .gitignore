@@ -1,0 +1,13 @@
+.idea
+.node-version
+.sass-cache
+.tm_properties
+*.DS_Store
+*.swp
+*.rdb
+bower_components
+build/**/*.js
+coverage
+karma.conf.js
+node_modules
+npm-debug.log

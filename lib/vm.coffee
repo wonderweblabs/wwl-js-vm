@@ -102,7 +102,7 @@ module.exports = class ViewModule extends require('../vendor/backbone_events_pro
 
   # Resets the view e.g. on stop
   resetView: ->
-    @_view.destroy() if @_view && _.isFunction(@_view)
+    @_view.destroy() if @_view && _.isFunction(@_view.destroy)
     @_view = null
 
 

@@ -124,7 +124,7 @@ When inheriting from ```require('wwl-js-vm').VM``` you can overwrite the followi
 #### initialize
 ```coffeescript
   # default:
-  initialize: ->
+  initialize: (options)->
     null
 ```
 > Called from constructor at the end. So don't overwrite the constructor itself. Get's all parameters passed in which you call on ```new```.
@@ -180,7 +180,7 @@ When inheriting from ```require('wwl-js-vm').VM``` you can overwrite the followi
     })
 ```
 > Returns the options passed to the main view on creation. By default
-> it contains the context.
+> it contains the context and the vm.
 > Overwrite and/or extend it to append you main view's configuration.
 
 
@@ -198,7 +198,7 @@ When inheriting from ```require('wwl-js-vm').VM``` you can overwrite the followi
 ```coffeescript
   # default:
   resetView: ->
-    @_view.destroy() if @_view && _.isFunction(@_view)
+    @_view.destroy() if @_view && _.isFunction(@_view.destroy)
     @_view = null
 ```
 > Resets the view e.g. on stop
@@ -420,3 +420,13 @@ module.exports = require('tests_custom/my_module')
 In the example above, i would run the configuration for implemented in ```tests_custom/my_module.coffee```.
 
 Since that file is not checked in, changing and jumping around in here does not have any effect for other developers.
+
+## How to contribute
+
+  1. ```npm install```
+  2. ```npm run build``` - to build the example files
+  3. open ```build/index.html``` in your browser
+  4. start working
+
+Please check if the tests working ```npm run test``` before you creating a pull-request
+

@@ -1,5 +1,11 @@
 # wwl-js-vm
 
+| Current Version |
+|-----------------|
+| [![npm version](https://badge.fury.io/js/wwl-js-vm.svg)](https://badge.fury.io/js/wwl-js-vm) |
+
+---
+
 A design pattern to implement encapsuled and separately developable view components
 in scope of Backbone.View, Marionette.View and/or Ampersand.View.
 

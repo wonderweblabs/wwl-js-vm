@@ -34,7 +34,7 @@ module.exports = class ViewModule extends require('../vendor/backbone_events_pro
 
   # You can overwrite the initialize method on your inheriting
   # view module class.
-  initialize: ->
+  initialize: (options)->
     null
 
   # Called for starting the view module.
@@ -92,6 +92,7 @@ module.exports = class ViewModule extends require('../vendor/backbone_events_pro
   # Overwrite and/or extend it to append you main view's configuration.
   getMainViewOptions: ->
     context: @context
+    vm: @
 
   # Called if there is no view created yet.
   buildView: ->
@@ -101,7 +102,7 @@ module.exports = class ViewModule extends require('../vendor/backbone_events_pro
 
   # Resets the view e.g. on stop
   resetView: ->
-    @_view.destroy() if @_view && _.isFunction(@_view)
+    @_view.destroy() if @_view && _.isFunction(@_view.destroy)
     @_view = null
 
 

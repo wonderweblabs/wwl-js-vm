@@ -48,9 +48,9 @@ module.exports = class Tester
 
     # action - show vm
     p = p.then =>
-      viewModule.getView().render()
       domElement = document.getElementById(@options.domElementId)
       domElement.appendChild(viewModule.getView().el)
+      viewModule.getView().render()
       Q()
 
     # callback - vmConfig.beforeStart

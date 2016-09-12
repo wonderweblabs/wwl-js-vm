@@ -14,6 +14,9 @@ module.exports = class Tester
   constructor: (options = {}) ->
     @options = options
 
+  registerAttachFunction: (func) ->
+    @attachFunc = func
+
   run: ->
     viewModule    = null
     moduleConfig  = null
@@ -48,9 +51,7 @@ module.exports = class Tester
 
     # action - show vm
     p = p.then =>
-      domElement = document.getElementById(@options.domElementId)
-      domElement.appendChild(viewModule.getView().el)
-      viewModule.getView().render()
+      @attachFunc(viewModule.getView())
       Q()
 
     # callback - vmConfig.beforeStart

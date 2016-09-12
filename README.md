@@ -9,6 +9,8 @@
 A design pattern to implement encapsuled and separately developable view components
 in scope of Backbone.View, Marionette.View and/or Ampersand.View.
 
+**Note: with version 1.0.0, there is a dependency to marionette 3+**
+
 Mainly, the idea comes from concepts like Webcomponents or React, where a piece of
 view functionality is implemented behind a clearly defined facade. From the outside,
 you cannot estimate how much is going on inside the module. There is just the definition
@@ -177,7 +179,7 @@ When inheriting from ```require('wwl-js-vm').VM``` you can overwrite the followi
 > You should return you own main view class here.
 
 
-#### onStop
+#### getMainViewOptions
 ```coffeescript
   # example overwriting
   getMainViewOptions: ->
@@ -253,7 +255,9 @@ tool to provide a convenient way to test view modules while developing them.
 
 ### View Module Tester - API
 
-You need to provide a container in the dom with the and id that you're passing to the tester. The tester will insert the view module's view's dom element (```.getView().el```) there.
+You need to register an attach callback (`tester.registerAttachFunction`) to the tester. When
+running it, the tester will call that function and will pass the view instance. You'll need to
+take care on your own to attach and render it. Have a look at the example below.
 
 ```html
 <div id="wwl-node-vm-tester-container"></div>
@@ -261,17 +265,18 @@ You need to provide a container in the dom with the and id that you're passing t
 
 ```coffeescript
 tester = new (require('wwl-js-vm').Tester)({
-
-  domElementId: 'wwl-node-vm-tester-container'
-
   config =
     getDefaultVMConfig: ->
       context: new (require('wwl-js-app-context'))({ root: true })
-
   vmConfig =
     vmPrototype: require('./vms/example/vm')
-
 })
+
+tester.registerAttachFunction (view) =>
+  domElement = document.getElementById('wwl-js-vm-tester-container')
+  domElement.appendChild(view.el)
+  view.render()
+
 tester.run()
 
 ```
@@ -316,7 +321,7 @@ Calling order:
 3. ```vmConfig.beforeInititalize(moduleConfig)```
 4. **Initializes vm with moduleConfig** ```new VM(moduleConfig)```
 5. ```vmConfig.afterInititalize(viewModule, moduleConfig)```
-6. **Renders vm.getView().el to dom**
+6. **Calls the registerAttachFunction function with vm.getView() passed**
 7. ```vmConfig.beforeStart(viewModule, moduleConfig)```
 8. **Runs vm.start()**
 9. ```vmConfig.afterStart(viewModule, moduleConfig)```

@@ -11,9 +11,7 @@ domready ->
 
 
   # Start testing
-  new (require('../lib/tester'))({
-
-    domElementId: 'wwl-js-vm-tester-container'
+  tester = new (require('../lib/tester'))({
 
     config:
       getDefaultVMConfig: ->
@@ -25,4 +23,11 @@ domready ->
       afterStart: (viewModule, moduleConfig) ->
         setTimeout(viewModule.stop, 1000)
 
-  }).run()
+  })
+
+  tester.registerAttachFunction (view) =>
+    domElement = document.getElementById('wwl-js-vm-tester-container')
+    domElement.appendChild(view.el)
+    view.render()
+
+  tester.run()

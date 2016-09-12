@@ -7,7 +7,9 @@
 ---
 
 A design pattern to implement encapsuled and separately developable view components
-in scope of Backbone.View, Marionette.View and/or Ampersand.View (**note** with version 1.0.0, there is a dependency to marionette 3+).
+in scope of Backbone.View, Marionette.View and/or Ampersand.View.
+
+**Note: with version 1.0.0, there is a dependency to marionette 3+**
 
 Mainly, the idea comes from concepts like Webcomponents or React, where a piece of
 view functionality is implemented behind a clearly defined facade. From the outside,
